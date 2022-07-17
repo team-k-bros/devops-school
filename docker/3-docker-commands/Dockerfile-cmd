@@ -1,0 +1,4 @@
+FROM ubuntu:18.04
+
+# Define default command.
+CMD ["echo", "This is cmd"] 

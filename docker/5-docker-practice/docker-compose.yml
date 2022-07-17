@@ -1,0 +1,21 @@
+version: "3"
+services:
+  react-nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: react-nginx
+    ports:
+      - "80:80"
+    expose:
+      - 80
+  react-push-to-s3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: react-s3
+    environment:
+      - AWS_ACCESS_KEY_ID=CHANGE_ME
+      - AWS_SECRET_ACCESS_KEY=CHANGE_ME
+      - AWS_DEFAULT_REGION=ap-northeast-2
+    command: s3 sync ./build s3://my-bucket
