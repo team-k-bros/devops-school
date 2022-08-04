@@ -5,6 +5,6 @@ resource "aws_instance" "ec2_import" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "Terraform-${var.user}-import"
+    Name = "Terraform-import"
   }
 }

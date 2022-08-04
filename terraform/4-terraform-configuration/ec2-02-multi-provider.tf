@@ -23,6 +23,6 @@ data "aws_ami" "ubuntu_virginia" {
 #   instance_type = "t2.micro"
 
 #   tags = {
-#     Name = "Terraform-${var.user}-multi-provider"
+#     Name = "Terraform-multi-provider"
 #   }
 # }
