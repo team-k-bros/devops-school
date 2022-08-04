@@ -1,8 +1,12 @@
 # S3 bucket for backend
 resource "aws_s3_bucket" "tfstate" {
   bucket = "terraform-s3-bucket-devops-school"
+}
 
-  versioning {
-    enabled = true # Prevent from deleting tfstate file
+# Prevent from deleting tfstate file
+resource "aws_s3_bucket_versioning" "tfstate_versioning" {
+  bucket = aws_s3_bucket.tfstate.id
+  versioning_configuration {
+    status = "Enabled"
   }
 }
