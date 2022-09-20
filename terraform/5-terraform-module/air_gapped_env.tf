@@ -67,7 +67,7 @@ resource "aws_security_group" "air_gapped" {
 }
 
 module "air_gapped_env" {
-  source       = "../modules/air-gapped-env"
+  source       = "./modules/air-gapped-env"
   key_name     = "airgapped-installation-${var.user}"
   pem_location = "${path.module}/certs"
 
