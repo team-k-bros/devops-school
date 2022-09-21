@@ -66,6 +66,8 @@ resource "aws_security_group" "air_gapped" {
   }
 }
 
+// Airgapped environment 망분리 환경
+// internet -> public instance (jump host, bastian host) -> private instance
 module "air_gapped_env" {
   source       = "./modules/air-gapped-env"
   key_name     = "airgapped-installation-key"
