@@ -18,5 +18,5 @@ data "aws_ami" "ubuntu" {
 #   source        = "./modules/simple-ec2"
 #   ami           = data.aws_ami.ubuntu.id
 #   instance_type = "t2.micro"
-#   name           = var.user
+#   name          = "<put-your-name>"
 # }
