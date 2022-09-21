@@ -11,7 +11,7 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.21.0"
 
-  name = "vpc-${var.user}"
+  name = "vpc-devlift"
   cidr = "10.0.0.0/16"
 
   azs             = local.azs
@@ -28,7 +28,7 @@ module "vpc" {
 }
 
 resource "aws_security_group" "only_ssh_basiton" {
-  name   = "only_ssh_basiton_${var.user}"
+  name   = "only_ssh_basiton_sg"
   vpc_id = module.vpc.vpc_id
 
   ingress {
@@ -46,12 +46,12 @@ resource "aws_security_group" "only_ssh_basiton" {
   }
 
   tags = {
-    Name = "only_ssh_basiton_${var.user}"
+    Name = "only_ssh_basiton_sg"
   }
 }
 
 resource "aws_security_group" "air_gapped" {
-  name   = "air_gapped_${var.user}"
+  name   = "air_gapped_sg"
   vpc_id = module.vpc.vpc_id
 
   ingress {
@@ -62,13 +62,13 @@ resource "aws_security_group" "air_gapped" {
   }
 
   tags = {
-    Name = "air_gapped_${var.user}"
+    Name = "air_gapped_sg"
   }
 }
 
 module "air_gapped_env" {
   source       = "./modules/air-gapped-env"
-  key_name     = "airgapped-installation-${var.user}"
+  key_name     = "airgapped-installation-key"
   pem_location = "${path.module}/certs"
 
   bastion_security_group_ids = [aws_security_group.only_ssh_basiton.id]
