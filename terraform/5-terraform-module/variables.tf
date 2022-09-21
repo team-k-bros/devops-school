@@ -12,8 +12,3 @@ variable "aws_secret_key" {
   description = "Value of AWS Access Key"
   type        = string
 }
-
-variable "user" {
-  description = "Terraform User to add postfix"
-  type        = string
-}
